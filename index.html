@@ -83,7 +83,7 @@
         <input type="number" id="value" placeholder="Enter the value">
 
         <label for="benchmark">Benchmark:</label>
-        <input type="number" id="benchmark" placeholder="Enter the benchmark">
+        <input type="number" id="benchmark" placeholder="Enter the benchmark or average">
 
         <button onclick="calculateDifference()">Calculate</button>
         <p id="result"></p>
@@ -104,10 +104,10 @@
             const formattedDifference = percentageDifference.toFixed(2);
 
             if (percentageDifference > 0) {
-                resultElement.textContent = `${value} is ${formattedDifference}% above the benchmark.`;
+                resultElement.textContent = `${value} is ${formattedDifference}% above the benchmark/average.`;
                 resultElement.style.color = "#28a745"; // Green
             } else if (percentageDifference < 0) {
-                resultElement.textContent = `${value} is ${Math.abs(formattedDifference)}% below the benchmark.`;
+                resultElement.textContent = `${value} is ${Math.abs(formattedDifference)}% below the benchmark/average.`;
                 resultElement.style.color = "#dc3545"; // Red
             } else {
                 resultElement.textContent = `${value} is equal to the benchmark.`;
