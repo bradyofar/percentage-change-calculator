@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Percentage Difference Calculator</title>
+    <style>
+        /* Body styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f1623c; /* Orange background color */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* Calculator styling */
+        .calculator {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+
+        /* Title styling */
+        h1 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #343a40;
+        }
+
+        /* Label styling */
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #495057;
+        }
+
+        /* Input styling */
+        input {
+            width: 100%;
+            padding: 8px;
+            margin: 10px 0;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        /* Button styling */
+        button {
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Result text styling */
+        p#result {
+            margin-top: 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #212529;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>Percentage Difference Calculator</h1>
+        <label for="value">Value:</label>
+        <input type="number" id="value" placeholder="Enter the value">
+
+        <label for="benchmark">Benchmark:</label>
+        <input type="number" id="benchmark" placeholder="Enter the benchmark">
+
+        <button onclick="calculateDifference()">Calculate</button>
+        <p id="result"></p>
+    </div>
+    <script>
+        function calculateDifference() {
+            const value = parseFloat(document.getElementById("value").value);
+            const benchmark = parseFloat(document.getElementById("benchmark").value);
+            const resultElement = document.getElementById("result");
+
+            if (isNaN(value) || isNaN(benchmark)) {
+                resultElement.textContent = "Please enter valid numbers for both inputs.";
+                resultElement.style.color = "red";
+                return;
+            }
+
+            const percentageDifference = ((value - benchmark) / benchmark) * 100;
+            const formattedDifference = percentageDifference.toFixed(2);
+
+            if (percentageDifference > 0) {
+                resultElement.textContent = `${value} is ${formattedDifference}% above the benchmark.`;
+                resultElement.style.color = "#28a745"; // Green
+            } else if (percentageDifference < 0) {
+                resultElement.textContent = `${value} is ${Math.abs(formattedDifference)}% below the benchmark.`;
+                resultElement.style.color = "#dc3545"; // Red
+            } else {
+                resultElement.textContent = `${value} is equal to the benchmark.`;
+                resultElement.style.color = "#212529"; // Black/Gray
+            }
+        }
+    </script>
+</body>
+</html>
